@@ -6,13 +6,54 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
     <script type="text/babel">
+		const handleResponse = (xhr) => {
+			const content = document.querySelector('#content');
+			const type = xhr.getResponseHeader('content-type');
+			switch(xhr.status){
+				case 200:
+					break;
+				case 404:
+					break;
+				default:
+					content.innerHTML = `<b>This is the default response</b>`
+					break;
+			}
+			
+			if(type === 'application/json'){
+				const obj = JSON.parse(xhr.response);
+				if(obj.birds){
+					let keys = Object.keys(obj.birds)
+					for(let i = 0; i<keys.length; i++){
+						let currentBird = obj.birds[keys[i]];
+						content.innerHTML += `<h2>Name: ${currentBird}</h2>`; //added a semicolon here
+						content.innerHTML += `<p>Color: ${currentBird}</p>`; //added a semicolon here
+					}
+				}
+				if(obj.message){
+					content.innerHTML += `<h2>Message: ${obj.message}</h2>`;
+				}
+			} else if (type === 'text/xml'){
+				const message = xhr.responseXML.querySelector('message').textContent;
+				content.innerHTML += `<h2>Message: ${message}</h2>;
+			}
+		};
+		
+		const init = () => {
+			const birdSavedForm = document.querySelector('#birdForm');
+			
+			const sendBirdData = (e) => ;//method
+			
+			
+		}
+		
+		window.onload = init;
     </script>
 </head>
     
 <body>
     <section id="top">
         <h3>Bird Saver</h3>
-        <form id="nameForm" action="/addBird" method="post">
+        <form id="birdForm" action="/addBird" method="post">
             <label for="name">Name: </label>
                 <input id="nameField" type="text" name="name" />
             <label for="color">Color: </label>
@@ -21,8 +62,16 @@
         </form>
         <h3>Retrieve Bird</h3>
         <form id="savedBird" action="getBirds" method="get">
-            
+            <select id='searchType'>
+				<option value='/getName'>Bird Name</option>
+				<option value='/getColors'>Bird Color</option>
+			</select>
+			<label for="search"></label>
+				<input id="searchFor" type="text" name="lookFor" />
+				<input id="lookBtn" type="submit" name="lookBtn" />
         </form>
     </section>
+	<section id="content">
+	</section>
 </body>
 </html>
