@@ -12,6 +12,9 @@
 			switch(xhr.status){
 				case 200:
 					break;
+				case 201:
+					content.innerHTML = `<b>Created</b>`
+					break;
 				case 404:
 					break;
 				default:
@@ -34,16 +37,59 @@
 				}
 			} else if (type === 'text/xml'){
 				const message = xhr.responseXML.querySelector('message').textContent;
-				content.innerHTML += `<h2>Message: ${message}</h2>;
+				content.innerHTML += `<h2>Message: ${message}</h2>`;
 			}
 		};
 		
+        const requestBirdData = (e, form) => {
+            const url = form.querySelector('#searchType').value;
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            
+            if(method == 'get'){
+                xhr.onload = () =>handleResponse(xhr, true);
+            } else {
+                xhr.onload = () => handleResponse(xhr,false);
+            }
+            
+            xhr.send();
+            
+            e.preventDefault();
+            return false;
+        }
+
+        const requestPOSTBird = (e, birdForm) => {
+            const action = birdForm.getAttribute('action');
+            const method = birdForm.getAttribute('method');
+            
+            const xhr = new XMLHttpRequest();
+            
+            xhr.open(method, action);
+            
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            
+            xhr.setRequestHeader ('Accept','application/json');
+            
+            xhr.onload = () => handleResponse(xhr);
+            
+            const formData = `name=${nameField.value}&color=${colorField.value}`;
+
+            xhr.send(formData);
+
+            return false;
+        };
+
 		const init = () => {
 			const birdSavedForm = document.querySelector('#birdForm');
 			
-			const sendBirdData = (e) => ;//method
+			const postBird = (e) => requestPOSTBird(e,birdSavedForm);
 			
-			
+			birdSavedForm.addEventListener('submit',postBird);
+            
+            const birdSavedData = document.querySelector('#savedBird');
+            const returnBirdData = (e) => requestBirdData(e, birdSavedData);
+            birdSavedData.addEventListener('submit',returnBirdData);
 		}
 		
 		window.onload = init;
@@ -61,7 +107,7 @@
             <input id="saveBird" type="submit" value="Add Bird" />
         </form>
         <h3>Retrieve Bird</h3>
-        <form id="savedBird" action="getBirds" method="get">
+        <form id="savedBird" action="/getBirds" method="get">
             <select id='searchType'>
 				<option value='/getName'>Bird Name</option>
 				<option value='/getColors'>Bird Color</option>
