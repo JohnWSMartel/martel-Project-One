@@ -9,7 +9,6 @@
 		const handleResponse = (xhr) => {
 			const content = document.querySelector('#content');
 			const type = xhr.getResponseHeader('content-type');
-            const method = form.getAttribute('method');
 			switch(xhr.status){
 				case 200:
                     content.innerHTML = `<b>Success</b>`
@@ -25,7 +24,7 @@
 				default:
 					content.innerHTML = `<b>This is the default response</b>`
 					break;
-			}
+			}//testing nodemon
 			
 			if(type === 'application/json'){
 				const obj = JSON.parse(xhr.response);
@@ -48,6 +47,7 @@
 		
         const requestBirdData = (e, form) => {
             const url = form.querySelector('#searchType').value;
+            const method = form.getAttribute('method');
             
             const xhr = new XMLHttpRequest();
             xhr.open(method, url);
