@@ -11,10 +11,14 @@
 			const type = xhr.getResponseHeader('content-type');
 			switch(xhr.status){
 				case 200:
+                    content.innerHTML = `<b>Success</b>`
 					break;
 				case 201:
 					content.innerHTML = `<b>Created</b>`
 					break;
+                case 400:
+                    content.innerHTML = `<b>Bad Request</b>`
+                    break;
 				case 404:
 					break;
 				default:
@@ -35,7 +39,7 @@
 				if(obj.message){
 					content.innerHTML += `<h2>Message: ${obj.message}</h2>`;
 				}
-			} else if (type === 'text/xml'){
+            } else if (type === 'text/xml'){
 				const message = xhr.responseXML.querySelector('message').textContent;
 				content.innerHTML += `<h2>Message: ${message}</h2>`;
 			}

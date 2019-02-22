@@ -46,7 +46,7 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-const getBirds = (request, response) => {
+const getBirds = (request, response) => { //This needs to be altered to add a search algorithm
   const responseJSON = { birds };
 
   return respondJSON(request, response, 200, responseJSON);
