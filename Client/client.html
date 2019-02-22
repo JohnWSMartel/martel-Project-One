@@ -24,7 +24,7 @@
 				default:
 					content.innerHTML = `<b>This is the default response</b>`
 					break;
-			}//testing nodemon
+			}
 			
 			if(type === 'application/json'){
 				const obj = JSON.parse(xhr.response);
@@ -119,7 +119,7 @@
 			</select>
 			<label for="search"></label>
 				<input id="searchFor" type="text" name="lookFor" />
-				<input id="lookBtn" type="submit" name="lookBtn" />
+                <input id="lookBtn" type="submit" name="lookBtn"/>
         </form>
     </section>
 	<section id="content">

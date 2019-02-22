@@ -16,7 +16,7 @@ const onRequest = (request, response) => {
                 htmlHandler.getIndex(request, response);
             } else if (parsedUrl.pathname === '/style.css'){
                 htmlHandler.getCSS(request, response);
-            } else if (parsedUrl.pathname === '/getBirds') {
+            } else if (parsedUrl.pathname === '/getName') {
                 jsonHandler.success(request, response);
             } else {
                 jsonHandler.notFound (request, response);
