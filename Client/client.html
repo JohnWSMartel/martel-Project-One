@@ -9,6 +9,7 @@
 		const handleResponse = (xhr) => {
 			const content = document.querySelector('#content');
 			const type = xhr.getResponseHeader('content-type');
+            const method = form.getAttribute('method');
 			switch(xhr.status){
 				case 200:
                     content.innerHTML = `<b>Success</b>`
