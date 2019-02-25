@@ -46,8 +46,12 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-const getBirds = (request, response) => { //This needs to be altered to add a search algorithm
+const getBirds = (request, response, params) => { // This needs to be altered to add a search algorithm
   const responseJSON = { birds };
+    
+    if(params.nameField){
+        foreach()//loop to go through birds
+    }
 
   return respondJSON(request, response, 200, responseJSON);
 };
@@ -84,10 +88,10 @@ const addBird = (request, response, body) => {
 };
 
 module.exports = {
-    success,
-    badRequest,
-    notFound,
-    getBirds,
-    getBirdsMeta,
-    addBird,
+  success,
+  badRequest,
+  notFound,
+  getBirds,
+  getBirdsMeta,
+  addBird,
 };
