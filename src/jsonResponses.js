@@ -46,13 +46,28 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-const getBirds = (request, response, params) => { // This needs to be altered to add a search algorithm
-  const responseJSON = { birds };
+const getBirds = (request, response, params) => {
+  
+    const requestedBirds = {};
     
     if(params.nameField){
-        foreach()//loop to go through birds
-    }
-
+        for(let i = 0; i<birds.length; i++){
+            let currentBird = birds[i];
+            if(currentBird.name === params.nameField){
+                requestedBirds.push(currentBird);
+            }
+        }
+        
+        birds.foreach(birds.Name){//loop to go through bird name
+            if(params.nameField === birds.Name){//the name put in matches the name given
+               //put the names in a requestedBirds
+               requestedBirds.push(birds[i]);
+               };
+        };
+    } else if(params.colorField){
+        
+    };
+    const responseJSON = requestedBirds;
   return respondJSON(request, response, 200, responseJSON);
 };
 

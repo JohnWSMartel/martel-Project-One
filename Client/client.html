@@ -49,6 +49,8 @@
             const url = form.querySelector('#searchType').value;
             const method = form.getAttribute('method');
             
+            //URL += "?name/color" + whatever is put in
+            
             const xhr = new XMLHttpRequest();
             xhr.open(method, url);
             
