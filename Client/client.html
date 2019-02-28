@@ -51,9 +51,9 @@
             
             //URL += "?name/color" + whatever is put in
             if('#searchType' === 'Bird Name'){
-                url += "?name" + ;//something the user added
+                url += "?name" + document.getElementById("searchFor").value;
             } else if ('#searchType' === 'Bird Color'){
-                url += "?color" + ;//something the user added
+                url += "?color" + document.getElementById("searchFor").value;
             }
             
             const xhr = new XMLHttpRequest();
