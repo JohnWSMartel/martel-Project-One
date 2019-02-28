@@ -57,15 +57,13 @@ const getBirds = (request, response, params) => {
                 requestedBirds.push(currentBird);
             }
         }
-        
-        birds.foreach(birds.Name){//loop to go through bird name
-            if(params.nameField === birds.Name){//the name put in matches the name given
-               //put the names in a requestedBirds
-               requestedBirds.push(birds[i]);
-               };
-        };
     } else if(params.colorField){
-        
+        for(let i = 0; i<birds.length; i++){
+            let currentBird = birds[i];
+            if(currentBird.name === params.colorField){
+                requestedBirds.push(currentBird);
+            }
+        }
     };
     const responseJSON = requestedBirds;
   return respondJSON(request, response, 200, responseJSON);
