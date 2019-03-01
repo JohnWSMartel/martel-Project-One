@@ -9,6 +9,7 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const onRequest = (request, response) => {
   console.log(request.url);
   const parsedUrl = url.parse(request.url);
+    const params = query.parse(parsedUrl.query);
 
   switch (request.method) {
     case 'GET':
@@ -17,7 +18,9 @@ const onRequest = (request, response) => {
       } else if (parsedUrl.pathname === '/style.css') {
         htmlHandler.getCSS(request, response);
       } else if (parsedUrl.pathname === '/getName') {
-        jsonHandler.success(request, response);
+          jsonHandler.getBirds(request,response,params);
+      } else if (parsedUrl.pathname === '/getColors') {
+          jsonHandler.getBirds(request,response,params);
       } else {
         jsonHandler.notFound(request, response);
       }

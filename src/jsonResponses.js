@@ -48,24 +48,31 @@ const respondJSONMeta = (request, response, status) => {
 
 const getBirds = (request, response, params) => {
   
-    const requestedBirds = {};
+          debugger;
+    let requestedBirds = {};
     
-    if(params.nameField){
-        for(let i = 0; i<birds.length; i++){
-            let currentBird = birds[i];
-            if(currentBird.name === params.nameField){
-                requestedBirds.push(currentBird);
+    //if(params.look)
+    
+    let birdIndexes = Object.keys(birds);
+    if(params.name){
+        for(let i = 0; i< birdIndexes.length; i++){
+            let currentBird = birds[birdIndexes[i]];
+            if(currentBird.name === params.name){
+              requestedBirds[currentBird.name] = currentBird;
             }
         }
-    } else if(params.colorField){
-        for(let i = 0; i<birds.length; i++){
-            let currentBird = birds[i];
-            if(currentBird.name === params.colorField){
-                requestedBirds.push(currentBird);
+    } else if(params.color){
+        for(let i = 0; i< birdIndexes.length; i++){
+            let currentBird = birds[birdIndexes[i]];
+            if(currentBird.color === params.color){
+              requestedBirds[currentBird.name] = currentBird;
             }
         }
     };
-    const responseJSON = requestedBirds;
+  
+    const responseJSON = {
+      birds: requestedBirds
+    };
   return respondJSON(request, response, 200, responseJSON);
 };
 

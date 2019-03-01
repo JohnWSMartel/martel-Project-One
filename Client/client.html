@@ -26,6 +26,10 @@
 					break;
 			}
 			
+          if(!xhr.response) {
+            return;
+          }
+          
 			if(type === 'application/json'){
 				const obj = JSON.parse(xhr.response);
 				if(obj.birds){
@@ -46,23 +50,25 @@
 		};
 		
         const requestBirdData = (e, form) => {
-            const url = form.querySelector('#searchType').value;
+            let url = form.querySelector('#searchType').value;
             const method = form.getAttribute('method');
             
             //URL += "?name/color" + whatever is put in
-            if('#searchType' === 'Bird Name'){
-                url += "?name" + document.getElementById("searchFor").value;
-            } else if ('#searchType' === 'Bird Color'){
-                url += "?color" + document.getElementById("searchFor").value;
+            if(url === '/getName'){
+                url += "?name=" + document.getElementById("searchFor").value;
+              //   /getName?name=<<<WHATEVER IS IN TEXT BOX>>>"
+            } else if (url === '/getColors'){
+                url += "?color=" + document.getElementById("searchFor").value;
+              //   /getColor?color=<<<WHATEVER IS IN TEXT BOX>>>"
             }
             
             const xhr = new XMLHttpRequest();
             xhr.open(method, url);
             
             if(method == 'get'){
-                xhr.onload = () =>handleResponse(xhr, true);
+                xhr.onload = () => handleResponse(xhr);
             } else {
-                xhr.onload = () => handleResponse(xhr,false);
+                xhr.onload = () => handleResponse(xhr);
             }
             
             xhr.send();
