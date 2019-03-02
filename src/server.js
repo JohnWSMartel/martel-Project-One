@@ -21,7 +21,9 @@ const onRequest = (request, response) => {
           jsonHandler.getBirds(request,response,params);
       } else if (parsedUrl.pathname === '/getColors') {
           jsonHandler.getBirds(request,response,params);
-      } else {
+      } else if (parsedUrl.pathname === '/birdList'){
+		  jsonHandler.birdList(request, response);
+	  } else {
         jsonHandler.notFound(request, response);
       }
       break;
