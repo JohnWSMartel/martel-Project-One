@@ -6,7 +6,7 @@ const respondJSON = (request, response, status, object) => {
   response.end();
 };
 
-const success = (request, response) => {
+const birdList = (request, response) => {
   const responseJSON = {
     birds,
   };
@@ -108,7 +108,7 @@ const addBird = (request, response, body) => {
 };
 
 module.exports = {
-  success,
+  birdList,
   badRequest,
   notFound,
   getBirds,

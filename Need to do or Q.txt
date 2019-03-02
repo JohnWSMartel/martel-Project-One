@@ -1,2 +1,0 @@
--Create filter that only returns birds that match search criteria
--Add CSS/Bootstrap

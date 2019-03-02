@@ -1,15 +1,16 @@
 {
   "name": "martel-project-one",
   "version": "1.0.0",
-    "engines":{
-        "node":"11.7.0",
-        "npm":"6.5.0"
-    },
+  "engines": {
+    "node": "11.7.0",
+    "npm": "6.5.0"
+  },
   "description": "Project to help categorize and store information about birds.",
   "main": "./src/server.js",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "bootstrap": "^4.3.1",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -18,10 +19,10 @@
   "devDependencies": {},
   "scripts": {
     "start": "node ./src/server.js",
-	"pretest": "eslint ./src --fix",
-	"nodemon": "nodemon -e * --watch ./src --watch ./Client ./src/server.js",
-	"build":"babel ./client --out0file ./hosted/bundle.js",
-	"watch":"babel --watch ./client --out-file ./hosted/bundle.js",
+    "pretest": "eslint ./src --fix",
+    "nodemon": "nodemon -e * --watch ./src --watch ./Client ./src/server.js",
+    "build": "babel ./client --out0file ./hosted/bundle.js",
+    "watch": "babel --watch ./client --out-file ./hosted/bundle.js",
     "test": "echo \"No Tests\""
   },
   "repository": {

@@ -20,6 +20,7 @@
                     content.innerHTML = `<b>Bad Request</b>`
                     break;
 				case 404:
+					content.innerHTML = `<b>Content not found</b>`
 					break;
 				default:
 					content.innerHTML = `<b>This is the default response</b>`
@@ -133,7 +134,11 @@
 			<label for="search"></label>
 				<input id="searchFor" type="text" name="lookFor" />
                 <input id="lookBtn" type="submit" name="lookBtn"/>
+				
         </form>
+		<form id="birdList" action="/getBirds" method="get">
+			<input id="allBtn" type="submit" name="getAll" value="Get All Birds"/>
+		</form>		
     </section>
 	<section id="content">
 	</section>
