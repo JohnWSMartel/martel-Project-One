@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-    <script type="text/babel">
+	<script type="text/babel">
 		const handleResponse = (xhr) => {
 			const content = document.querySelector('#content');
 			const type = xhr.getResponseHeader('content-type');
@@ -126,6 +126,7 @@
             <input id="saveBird" type="submit" value="Add Bird" />
         </form>
         <h3>Retrieve Bird</h3>
+		<div class="form-group">
         <form id="savedBird" action="/getBirds" method="get">
             <select id='searchType'>
 				<option value='/getName'>Bird Name</option>
@@ -134,12 +135,8 @@
 			</select>
 			<label for="search"></label>
 				<input id="searchFor" type="text" name="lookFor" />
-                <input id="lookBtn" type="submit" name="lookBtn"/>
-				
-        </form>
-		<!--<form id="birdList" action="/birdList" method="get">
-			<input id="allBtn" type="submit" name="getAll" value="Get All Birds"/>
-		</form>-->
+                <input id="lookBtn" type="submit" name="lookBtn"/>				
+        </form></div>
     </section>
 	<section id="content">
 	</section>
