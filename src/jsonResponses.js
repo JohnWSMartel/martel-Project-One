@@ -47,8 +47,6 @@ const respondJSONMeta = (request, response, status) => {
 };
 
 const getBirds = (request, response, params) => {
-  
-          debugger;
     let requestedBirds = {};
     
     //if(params.look)
